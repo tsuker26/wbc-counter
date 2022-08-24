@@ -19,7 +19,7 @@ body {
 
 .table {
   margin: 15px auto;
-  padding: 25px ;
+  padding: 25px;
   background-color: $additional-colors;
 }
 
@@ -33,9 +33,11 @@ thead {
 
 tbody {
   font-size: 22px;
-.cell{
-  cursor: pointer;
-}
+
+  .cell {
+    cursor: pointer;
+  }
+
   tr {
     background-color: $basic-colors;
 
@@ -44,17 +46,34 @@ tbody {
       text-align: center;
     }
   }
-  .delete{
+
+  .delete {
     cursor: pointer;
-    background-color:$additional-colors;
+    background-color: $additional-colors;
+
+    div {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      background-color: $basic-colors;
+      color: gray;
+      width: 30px;
+      height: 25px;
+      border-radius: 50%;
+
+      &:hover {
+        color: $white;
+      }
+    }
   }
 }
 
 button {
   padding: 10px 15px;
   margin: 5px;
-  background-color:$basic-colors;
-  color:$white ;
+  background-color: $basic-colors;
+  color: $white;
   border: 1px solid $additional-colors;
 
   cursor: pointer;
@@ -69,8 +88,8 @@ button {
   }
 
   &.active {
-    background-color:$white;
-    color:  $basic-colors;
+    background-color: $white;
+    color: $basic-colors;
   }
 }
 

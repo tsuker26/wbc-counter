@@ -4,12 +4,16 @@ import Row from "./Row";
 type TableProps = {
     cells: string[],
     mode: boolean,
-    wbc:number,
+    wbc: number,
+    setCells: (cells: string[]) => void,
 
 }
 
-const Table: FC<TableProps> = ({cells, mode,wbc}) => {
+const Table: FC<TableProps> = ({cells, setCells, mode, wbc}) => {
     const [total, setTotal] = useState<number>(0)
+    const deleteRow = (cell: string) => {
+        setCells([...cells.filter(row => row !== cell)])
+    }
     return (
         <table className={'table'}>
             <thead>
@@ -21,7 +25,13 @@ const Table: FC<TableProps> = ({cells, mode,wbc}) => {
             </tr>
             </thead>
             <tbody>
-            {cells.map(el => <Row  key={el} mode={mode} cell={el} total={total} setTotal={setTotal} wbc ={wbc}/>)}
+            {cells.map(el => <Row key={el}
+                                  mode={mode}
+                                  cell={el}
+                                  total={total}
+                                  setTotal={setTotal}
+                                  wbc={wbc}
+                                  deleteRow={deleteRow}/>)}
             <tr>
                 <td>Всего :</td>
                 <td>{total}</td>

@@ -5,15 +5,16 @@ type RowProps = {
     cell: string;
     mode: boolean;
     total: number;
-    wbc:number,
+    wbc: number;
     setTotal: (total: number) => void;
+    deleteRow: (cell: string) => void;
 }
 
 
-const Row: FC<RowProps> = ({cell, mode, setTotal, total,wbc}) => {
+const Row: FC<RowProps> = ({cell, mode, setTotal, total, wbc, deleteRow}) => {
     const [count, setCount] = useState<number>(0)
-    const relative = ((count*100)/total);
-    const absolute = (relative*wbc)/100
+    const relative = ((count * 100) / total);
+    const absolute = (relative * wbc) / 100
     const changeCount = () => {
         if (mode) {
             if (total === 100) return
@@ -33,9 +34,9 @@ const Row: FC<RowProps> = ({cell, mode, setTotal, total,wbc}) => {
         <tr>
             <td className={'cell'} onClick={changeCount}>{cell}</td>
             <td>{count}</td>
-            <td>{count&&`${relative.toFixed(2)}%`}</td>
-            <td>{wbc&&absolute.toFixed(2)}  </td>
-            <td className={'delete'}>x</td>
+            <td>{count && `${relative.toFixed(2)}%`}</td>
+            <td>{wbc && absolute.toFixed(2)}  </td>
+            <td className={'delete'} onClick={() => deleteRow(cell)}><div>x</div></td>
         </tr>
     );
 };
