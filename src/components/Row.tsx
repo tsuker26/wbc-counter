@@ -1,4 +1,4 @@
-import React, {FC, useState} from 'react';
+import React, {FC, useEffect, useState} from 'react';
 
 
 type RowProps = {
@@ -8,6 +8,7 @@ type RowProps = {
     wbc: number;
     setTotal: (total: number) => void;
     deleteRow: (cell: string) => void;
+
 }
 
 
@@ -28,6 +29,9 @@ const Row: FC<RowProps> = ({cell, mode, setTotal, total, wbc, deleteRow}) => {
         }
 
     }
+    useEffect(() => {
+        if (!total) setCount(0)
+    }, [total])
 
 
     return (
@@ -36,7 +40,9 @@ const Row: FC<RowProps> = ({cell, mode, setTotal, total, wbc, deleteRow}) => {
             <td>{count}</td>
             <td>{count && `${relative.toFixed(2)}%`}</td>
             <td>{wbc && absolute.toFixed(2)}  </td>
-            <td className={'delete'} onClick={() => deleteRow(cell)}><div>x</div></td>
+            <td className={'delete'} onClick={() => deleteRow(cell)}>
+                <div>x</div>
+            </td>
         </tr>
     );
 };
