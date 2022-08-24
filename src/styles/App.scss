@@ -5,8 +5,92 @@
   padding: 0;
   box-sizing: border-box;
   font-family: "Roboto", sans-serif;
+  color: $white;
 }
 
 body {
   background-color: $basic-colors;
+}
+
+.App {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.table {
+  margin: 15px auto;
+  padding: 25px ;
+  background-color: $additional-colors;
+}
+
+thead {
+  font-size: 24px;
+
+  th {
+    padding: 15px;
+  }
+}
+
+tbody {
+  font-size: 22px;
+.cell{
+  cursor: pointer;
+}
+  tr {
+    background-color: $basic-colors;
+
+    td {
+      padding: 15px;
+      text-align: center;
+    }
+  }
+  .delete{
+    cursor: pointer;
+    background-color:$additional-colors;
+  }
+}
+
+button {
+  padding: 10px 15px;
+  margin: 5px;
+  background-color:$basic-colors;
+  color:$white ;
+  border: 1px solid $additional-colors;
+
+  cursor: pointer;
+  box-shadow: 2px 3px 2px rgba(0, 0, 0, 0.5);
+
+  &:active {
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  }
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  &.active {
+    background-color:$white;
+    color:  $basic-colors;
+  }
+}
+
+.setting {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 25px;
+
+
+  input {
+    background-color: transparent;
+    padding: 10px;
+    border: 1px solid $additional-colors;
+    outline: none;
+  }
+
+
+  span {
+    margin-left: 5px;
+  }
+
 }
