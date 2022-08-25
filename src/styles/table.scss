@@ -1,0 +1,109 @@
+@import "variables";
+
+.table {
+  margin: 15px auto;
+  padding: 25px;
+  background-color: $additional-colors;
+  border-radius: 25px;
+
+  .head {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+
+    span {
+      font-size: 24px;
+
+    }
+
+  }
+
+  .body {
+
+    .row {
+      display: flex;
+      justify-content: space-between;
+      background-color: $basic-colors;
+      border-bottom: 7px solid $additional-colors;
+      border-radius: 25px;
+      padding: 15px;
+      position: relative;
+      cursor: pointer;
+
+      &.all {
+        border-bottom: 3px solid $additional-colors;
+      }
+
+      .absolute {
+        text-align: center;
+      }
+      .relative {
+        text-align: center;
+      }
+
+      span {
+        flex: 1;
+        font-size: 22px;
+
+
+      }
+
+      &:hover {
+        .delete {
+          display: flex;
+        }
+      }
+    }
+
+    .delete {
+      display: none;
+      position: absolute;
+      right: 0;
+      cursor: pointer;
+      color: gray;
+      width: 30px;
+      height: 25px;
+
+      &:hover {
+        color: $white;
+      }
+    }
+
+  }
+}
+
+@media(max-width: 576px) {
+  .table {
+    padding: 0;
+
+    .head {
+      padding: 7px;
+
+
+      span {
+        flex: 1;
+        font-size: 15px;
+
+
+        &.absolute {
+          text-align: center;
+        }
+
+      }
+    }
+
+    .body {
+      .row {
+
+  .delete{
+    display: flex;
+  }
+        span {
+          font-size: 12px;
+        }
+
+      }
+    }
+  }
+
+}

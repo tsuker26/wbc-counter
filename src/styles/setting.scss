@@ -1,0 +1,51 @@
+@import "variables";
+
+.setting {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 25px;
+
+
+  input {
+    background-color: transparent;
+    padding: 10px;
+    border: 1px solid $additional-colors;
+    outline: none;
+
+  }
+
+
+  span {
+    margin-left: 5px;
+  }
+
+}
+
+@media (max-width: 767px) {
+  .setting {
+    flex-direction: column;
+
+    .input {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 80%;
+    }
+
+    .add {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 80%;
+    }
+
+    .btn {
+
+    }
+
+    input {
+      width: 100%;
+    }
+  }
+}

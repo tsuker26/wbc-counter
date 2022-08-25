@@ -7,8 +7,7 @@ type RowProps = {
     total: number;
     wbc: number;
     setTotal: (total: number) => void;
-    deleteRow: (cell: string) => void;
-
+    deleteRow: (cell: string,count: number) => void;
 }
 
 
@@ -35,15 +34,13 @@ const Row: FC<RowProps> = ({cell, mode, setTotal, total, wbc, deleteRow}) => {
 
 
     return (
-        <tr>
-            <td className={'cell'} onClick={changeCount}>{cell}</td>
-            <td>{count}</td>
-            <td>{count && `${relative.toFixed(2)}%`}</td>
-            <td>{wbc && absolute.toFixed(2)}  </td>
-            <td className={'delete'} onClick={() => deleteRow(cell)}>
-                <div>x</div>
-            </td>
-        </tr>
+        <div className={'row'} >
+            <span onClick={changeCount} className={'cell'} >{cell}</span>
+            <span className={'count'}>  {count}</span>
+            <span className={'relative'}>{count && `${relative.toFixed(2)}%`}</span>
+            <span className={'absolute'}>{wbc && count && absolute.toFixed(2)}  </span>
+            <span className="delete" onClick={() => deleteRow(cell,count)}>x</span>
+        </div>
     );
 };
 
