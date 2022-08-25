@@ -20,10 +20,10 @@ const Table: FC<TableProps> = ({cells, setCells, mode, wbc, total, setTotal}) =>
         <div className={'table'}>
             <div className={'head'}>
              <div className="row">
-                 <span className={'cell'}>Клетка</span>
-                 <span className={'count'}>Количество</span>
-                 <span className={'relative'}>Относительное </span>
-                 <span className={'absolute'}>Абсолютное </span>
+                 <span className={'cell'}>Cell</span>
+                 <span className={'count'}>Count</span>
+                 <span className={'relative'}>Relative</span>
+                 <span className={'absolute'}>Absolute</span>
              </div>
             </div>
             <div className={'body'}>

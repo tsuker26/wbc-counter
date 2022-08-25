@@ -13,6 +13,7 @@ function App() {
         setTotal(0)
         setMode(true)
         setWbc(0)
+        setCells(['Neutrophil', 'Monocyte', 'Lymphocyte', 'Eosinophil', 'Basophil'])
     }
     return (
         <div className="App">
