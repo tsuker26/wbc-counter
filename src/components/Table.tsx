@@ -19,10 +19,12 @@ const Table: FC<TableProps> = ({cells, setCells, mode, wbc, total, setTotal}) =>
     return (
         <div className={'table'}>
             <div className={'head'}>
-                <span className={'cell'}>Клетка</span>
-                <span className={'count'}>Количество</span>
-                <span className={'relative'}>Относительное </span>
-                <span className={'absolute'}>Абсолютное </span>
+             <div className="row">
+                 <span className={'cell'}>Клетка</span>
+                 <span className={'count'}>Количество</span>
+                 <span className={'relative'}>Относительное </span>
+                 <span className={'absolute'}>Абсолютное </span>
+             </div>
             </div>
             <div className={'body'}>
                 {cells.map(el => <Row key={el}
@@ -33,7 +35,6 @@ const Table: FC<TableProps> = ({cells, setCells, mode, wbc, total, setTotal}) =>
                                       wbc={wbc}
                                       deleteRow={deleteRow}/>)}
                 <div className="row all">
-                    <span>Всего :</span>
                     <span>{total}/100</span>
                 </div>
             </div>
@@ -44,23 +45,5 @@ const Table: FC<TableProps> = ({cells, setCells, mode, wbc, total, setTotal}) =>
 
 export default Table;
 
-//
-//
-// <thead>
-// <tr>
-//     <th>Клетка</th>
-//     <th>Количество</th>
-//     <th>Относительное значение</th>
-//     <th>Абсолютное значение</th>
-// </tr>
-// </thead>
-// <tbody>
-//
-// <tr>
-//     <td>Всего :</td>
-//     <td>{total}</td>
-// </tr>
-// </tbody>
 
-//
 
