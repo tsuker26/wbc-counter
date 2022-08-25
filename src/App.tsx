@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import './styles/App.scss';
 import Table from "./components/Table";
 import Setting from "./components/Setting";
+import Print from './components/Print';
 
 function App() {
     const [mode, setMode] = useState<boolean>(true)
@@ -15,6 +16,7 @@ function App() {
     }
     return (
         <div className="App">
+            <Print wbc={wbc}/>
             <Setting mode={mode}
                      setMode={setMode}
                      setCells={setCells}
@@ -29,6 +31,7 @@ function App() {
                    wbc={wbc}
                    total={total}
                    setTotal={setTotal}/>
+
         </div>
     );
 }

@@ -20,6 +20,81 @@ body {
   margin: 0 auto;
 }
 
+.print {
+  display: none;
+}
 
+.print_info {
+  display: block;
+
+  .info {
+    display: block;
+    border-bottom: 1px solid black;
+    padding-top: 15px;
+    padding-bottom: 3px;
+
+    p {
+      font-size: 20px;
+      color: black;
+    }
+  }
+}
+
+.wbc {
+  display: inline-block;
+  padding: 10px;
+  margin-top: 25px;
+  border: 1px solid black;
+
+  span {
+    font-size: 20px;
+    color: black;
+  }
+}
+
+@media print {
+  .print {
+    display: block;
+  }
+  .setting {
+    display: none;
+  }
+  .table {
+    span {
+      color: black;
+    }
+
+    .row {
+      border-radius: 0;
+
+      .count {
+        display: none;
+      }
+    }
+
+    .body {
+      .row {
+        border-radius: 0;
+        border: 0;
+        padding: 0;
+
+        span {
+          padding: 15px;
+          border: 0.5px solid black;
+        }
+
+        .delete {
+          display: none;
+        }
+
+        &.all {
+          display: none;
+        }
+      }
+    }
+  }
+
+
+}
 
 
