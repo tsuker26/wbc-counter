@@ -9,13 +9,7 @@ type RowProps = {
     setTotal: (total: number) => void;
     deleteRow: (cell: string, count: number) => void;
 }
-type computeReturn = {
-    relativeClick: number;
-    coordinateClick: number,
-    rowLeft: number,
-    relativePercents: number,
-    click: number,
-}
+
 
 
 const Row: FC<RowProps> = ({cell, mode, setTotal, total, wbc, deleteRow}) => {
@@ -42,17 +36,6 @@ const Row: FC<RowProps> = ({cell, mode, setTotal, total, wbc, deleteRow}) => {
         if (!total) setCount(0)
     }, [total])
 
-    // const computePosition = (e: TouchEvent): computeReturn | undefined => {
-    //     if (rowRef.current) {
-    //         let rowLeft = rowRef.current.getBoundingClientRect().left
-    //         let click = e.targetTouches[0].clientX
-    //         let coordinateClick = click - rowLeft
-    //         let relativeClick = coordinateClick - rowRef.current.offsetWidth
-    //
-    //         let relativePercents = relativeClick * 100;
-    //         return {relativeClick, coordinateClick, rowLeft, relativePercents, click}
-    //     }
-    // }
 
 
     function handlerDown(e: TouchEvent) {
