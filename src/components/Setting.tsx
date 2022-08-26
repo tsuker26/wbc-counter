@@ -6,11 +6,11 @@ type SettingProps = {
     wbc: number,
     setWbc: (wbc: number) => void,
     setMode: (mode: boolean) => void,
-    setCells: (cells:string[]) => void,
-    clear:()=>void,
+    setCells: (cells: string[]) => void,
+    clear: () => void,
 }
 
-const Setting: FC<SettingProps> = ({mode, setMode, cells, setCells, wbc, setWbc,clear}) => {
+const Setting: FC<SettingProps> = ({mode, setMode, cells, setCells, wbc, setWbc, clear}) => {
     const [add, setAdd] = useState<string>('')
     const addCell = () => {
         if (add) {
@@ -34,7 +34,7 @@ const Setting: FC<SettingProps> = ({mode, setMode, cells, setCells, wbc, setWbc,
                 <button onClick={addCell}>Add</button>
             </div>
             <div className={'btn'}>
-                <button onClick={()=>window.print()}>Print</button>
+                <button onClick={() => window.print()}>Print</button>
                 <button onClick={clear}>Clear</button>
                 <button onClick={() => setMode(false)} className={!mode ? 'active' : ''}>-</button>
                 <button onClick={() => setMode(true)} className={mode ? 'active' : ''}>+</button>

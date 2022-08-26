@@ -13,6 +13,7 @@
     border: 1px solid $additional-colors;
     outline: none;
     border-radius: 25px;
+    font-size: 18px;
 
   }
 
@@ -32,6 +33,7 @@
       align-items: center;
       justify-content: center;
       width: 80%;
+
     }
 
     .add {
@@ -47,6 +49,7 @@
 
     input {
       width: 100%;
+
     }
   }
 }

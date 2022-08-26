@@ -53,6 +53,10 @@ body {
 }
 
 @media print {
+  body {
+    background-color: $white;
+    height: 100vh;
+  }
   .print {
     display: block;
   }

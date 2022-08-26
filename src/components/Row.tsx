@@ -11,14 +11,16 @@ type RowProps = {
 }
 
 
-
 const Row: FC<RowProps> = ({cell, mode, setTotal, total, wbc, deleteRow}) => {
     const [count, setCount] = useState<number>(0)
     const [left, setLeft] = useState<number | undefined>(0)
     const [touchStart, setTouchStart] = useState<number>(0)
+
     const rowRef = useRef<HTMLDivElement>(null)
+
     const relative = ((count * 100) / total);
     const absolute = (relative * wbc) / 100
+
     const changeCount = () => {
         if (mode) {
             if (total === 100) return
@@ -37,26 +39,21 @@ const Row: FC<RowProps> = ({cell, mode, setTotal, total, wbc, deleteRow}) => {
     }, [total])
 
 
-
     function handlerDown(e: TouchEvent) {
         setTouchStart(e.targetTouches[0].clientX)
-        console.log(e.targetTouches[0].clientX);
     }
 
     function handlerMove(e: TouchEvent) {
-        if (rowRef.current) {
-            let click = e.targetTouches[0].clientX
-            let deltaX = click - touchStart
-            setLeft(deltaX)
-            if(left&&left < -200){
-                deleteRow(cell,count)
-            }
-
+        let click = e.targetTouches[0].clientX
+        let deltaX = click - touchStart
+        setLeft(deltaX)
+        if (left && left < -200) {
+            deleteRow(cell, count)
         }
     }
 
     function handlerUp() {
-        if(left&&left>-200){
+        if (left && left > -200) {
             setLeft(0)
         }
     }
