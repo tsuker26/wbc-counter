@@ -10,10 +10,12 @@ function App() {
     const [wbc, setWbc] = useState<number>(0)
     const [total, setTotal] = useState<number>(0)
     const clear = () => {
-        setTotal(0)
-        setMode(true)
-        setWbc(0)
-        setCells(['Neutrophil', 'Monocyte', 'Lymphocyte', 'Eosinophil', 'Basophil'])
+        if(window.confirm('Вы уверенны?')){
+            setTotal(0)
+            setMode(true)
+            setWbc(0)
+            setCells(['Neutrophil', 'Monocyte', 'Lymphocyte', 'Eosinophil', 'Basophil'])
+        }
     }
     return (
         <div className="App">

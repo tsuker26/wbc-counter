@@ -48,20 +48,20 @@ const Row: FC<RowProps> = ({cell, mode, setTotal, total, wbc, deleteRow}) => {
     }
 
     function handlerMove(e: TouchEvent) {
-        const deltaX = e.targetTouches[0].clientX - touchStart
+        let deltaX = e.targetTouches[0].clientX - touchStart
+        if (deltaX > 0) deltaX = 0
+
         setDisplayDelete('flex')
         setWidthDelete(-deltaX)
         setLeftRow(deltaX)
-        if (leftRow < -rowWidth / 2) {
-            deleteRow(cell, count)
-        }
-        if (leftRow > 0) {
-            setDisplayDelete('none')
-        }
+
+        if (leftRow < -rowWidth / 2) deleteRow(cell, count)
+        if (!leftRow) setDisplayDelete('none')
+
     }
 
     function handlerUp() {
-        if (leftRow && leftRow > -rowWidth / 2) {
+        if (leftRow > -rowWidth / 2) {
             setLeftRow(0)
             setDisplayDelete('none')
             setWidthDelete(0)
@@ -93,4 +93,3 @@ const Row: FC<RowProps> = ({cell, mode, setTotal, total, wbc, deleteRow}) => {
 
 export default Row;
 
-//
