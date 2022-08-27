@@ -27,8 +27,21 @@
 
 
   .body {
+    .row_block {
+      display: flex;
+
+      .delete_block {
+        position: relative;
+        right: 0;
+        background-color: red;
+        border-radius: 25px;
+        align-items: center;
+        justify-content: center;
+      }
+    }
 
     .row {
+      flex: 100%;
       background-color: $basic-colors;
       border-bottom: 7px solid $additional-colors;
       border-radius: 25px;
@@ -75,6 +88,7 @@
 
     .head {
       padding: 7px;
+
       span {
         font-size: 15px;
       }
@@ -83,6 +97,13 @@
     .body {
       .row {
         height: 100%;
+
+        &:hover {
+          .delete {
+            display: none;
+          }
+
+        }
 
         span {
           font-size: 16px;

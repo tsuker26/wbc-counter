@@ -13,7 +13,9 @@ type RowProps = {
 
 const Row: FC<RowProps> = ({cell, mode, setTotal, total, wbc, deleteRow}) => {
     const [count, setCount] = useState<number>(0)
-    const [left, setLeft] = useState<number | undefined>(0)
+    const [leftRow, setLeftRow] = useState<number>(0)
+    const [widthDelete, setWidthDelete] = useState<number>(0)
+    const [displayDelete, setDisplayDelete] = useState<string | undefined>('none')
     const [touchStart, setTouchStart] = useState<number>(0)
 
     const rowRef = useRef<HTMLDivElement>(null)
@@ -44,33 +46,48 @@ const Row: FC<RowProps> = ({cell, mode, setTotal, total, wbc, deleteRow}) => {
     }
 
     function handlerMove(e: TouchEvent) {
+        setDisplayDelete('flex')
         let click = e.targetTouches[0].clientX
         let deltaX = click - touchStart
-        setLeft(deltaX)
-        if (left && left < -200) {
+        const increasePercent = (touchStart * 100) / click
+        const width = (deltaX - increasePercent)
+        setWidthDelete(-width)
+        setLeftRow(deltaX)
+        if (leftRow < -150) {
             deleteRow(cell, count)
+        }
+        if (leftRow > 0) {
+            setDisplayDelete('none')
         }
     }
 
     function handlerUp() {
-        if (left && left > -200) {
-            setLeft(0)
+        if (leftRow && leftRow > -150) {
+            setLeftRow(0)
+            setDisplayDelete('none')
+            setWidthDelete(0)
         }
     }
 
     return (
-        <div ref={rowRef}
-             className={'row'}
-             style={{left: `${left}px`}}
-             onTouchStart={handlerDown}
-             onTouchMove={handlerMove}
-             onTouchEnd={handlerUp}>
-            <span onClick={changeCount} className={'cell'}>{cell}</span>
-            <span onClick={changeCount} className={'count'}>  {count}</span>
-            <span onClick={changeCount} className={'relative'}>{count && `${relative.toFixed(2)}%`}</span>
-            <span onClick={changeCount} className={'absolute'}>{wbc && count && absolute.toFixed(2)}  </span>
-            <span onClick={() => deleteRow(cell, count)} className="delete">x</span>
+        <div className={'row_block'}>
+            <div ref={rowRef}
+                 className={'row'}
+                 style={{left: `${leftRow}px`}}
+                 onTouchStart={handlerDown}
+                 onTouchMove={handlerMove}
+                 onTouchEnd={handlerUp}>
+                <span onClick={changeCount} className={'cell'}>{cell}</span>
+                <span onClick={changeCount} className={'count'}>  {count}</span>
+                <span onClick={changeCount} className={'relative'}>{count && `${relative.toFixed(2)}%`}</span>
+                <span onClick={changeCount} className={'absolute'}>{wbc && count && absolute.toFixed(2)}  </span>
+                <span onClick={() => deleteRow(cell, count)} className="delete">x</span>
+            </div>
+            <div className={'delete_block'} style={{width: `${widthDelete}px`, display: `${displayDelete}`}}>
+                <span>Delete</span>
+            </div>
         </div>
+
     );
 };
 
