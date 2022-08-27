@@ -29,9 +29,12 @@
   .body {
     .row_block {
       display: flex;
-
+      position: relative;
+      border-bottom: 7px solid $additional-colors;
       .delete_block {
-        position: relative;
+        border-left: 5px solid $additional-colors;
+        height: 100%;
+        position: absolute;
         right: 0;
         background-color: red;
         border-radius: 25px;
@@ -41,9 +44,9 @@
     }
 
     .row {
-      flex: 100%;
+      flex: 1;
       background-color: $basic-colors;
-      border-bottom: 7px solid $additional-colors;
+
       border-radius: 25px;
       position: relative;
       cursor: pointer;

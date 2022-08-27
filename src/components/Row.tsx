@@ -17,6 +17,7 @@ const Row: FC<RowProps> = ({cell, mode, setTotal, total, wbc, deleteRow}) => {
     const [widthDelete, setWidthDelete] = useState<number>(0)
     const [displayDelete, setDisplayDelete] = useState<string | undefined>('none')
     const [touchStart, setTouchStart] = useState<number>(0)
+    const [rowWidth, setRowWidth] = useState<number>(0)
 
     const rowRef = useRef<HTMLDivElement>(null)
 
@@ -43,17 +44,15 @@ const Row: FC<RowProps> = ({cell, mode, setTotal, total, wbc, deleteRow}) => {
 
     function handlerDown(e: TouchEvent) {
         setTouchStart(e.targetTouches[0].clientX)
+        if (rowRef.current) setRowWidth(rowRef.current.offsetWidth);
     }
 
     function handlerMove(e: TouchEvent) {
+        const deltaX = e.targetTouches[0].clientX - touchStart
         setDisplayDelete('flex')
-        let click = e.targetTouches[0].clientX
-        let deltaX = click - touchStart
-        const increasePercent = (touchStart * 100) / click
-        const width = (deltaX - increasePercent)
-        setWidthDelete(-width)
+        setWidthDelete(-deltaX)
         setLeftRow(deltaX)
-        if (leftRow < -150) {
+        if (leftRow < -rowWidth / 2) {
             deleteRow(cell, count)
         }
         if (leftRow > 0) {
@@ -62,7 +61,7 @@ const Row: FC<RowProps> = ({cell, mode, setTotal, total, wbc, deleteRow}) => {
     }
 
     function handlerUp() {
-        if (leftRow && leftRow > -150) {
+        if (leftRow && leftRow > -rowWidth / 2) {
             setLeftRow(0)
             setDisplayDelete('none')
             setWidthDelete(0)
@@ -86,9 +85,12 @@ const Row: FC<RowProps> = ({cell, mode, setTotal, total, wbc, deleteRow}) => {
             <div className={'delete_block'} style={{width: `${widthDelete}px`, display: `${displayDelete}`}}>
                 <span>Delete</span>
             </div>
+
         </div>
 
     );
 };
 
 export default Row;
+
+//

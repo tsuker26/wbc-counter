@@ -70,7 +70,7 @@ body {
     }
 
     .row {
-      background-color: $white;
+
       border-radius: 0;
 
       .count {
@@ -79,9 +79,12 @@ body {
     }
 
     .body {
-      .row {
-        border-radius: 0;
+      .row_block{
         border: 0;
+      }
+      .row {
+        background-color: $white;
+        border-radius: 0;
         padding: 0;
 
         span {
