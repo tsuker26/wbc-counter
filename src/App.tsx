@@ -9,7 +9,7 @@ function App() {
     const [cells, setCells] = useState<string[]>([ 'Monocyte', 'Lymphocyte', 'Eosinophil', 'Basophil'])
     const [wbc, setWbc] = useState<number>(0)
     const [total, setTotal] = useState<number>(0)
-    const clear = () => {
+    const defaultValue = () => {
         if(window.confirm('Вы уверенны?')){
             setTotal(0)
             setMode(true)
@@ -26,7 +26,7 @@ function App() {
                      cells={cells}
                      wbc={wbc}
                      setWbc={setWbc}
-                     clear={clear}/>
+                     clear={defaultValue}/>
 
             <Table cells={cells}
                    setCells={setCells}

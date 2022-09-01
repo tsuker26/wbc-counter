@@ -31,6 +31,9 @@
       display: flex;
       position: relative;
       border-bottom: 7px solid $additional-colors;
+      background-color: $basic-colors;
+      border-radius: 25px;
+      cursor: pointer;
 
       .delete_block {
         align-items: center;
@@ -47,14 +50,9 @@
 
     .row {
       flex: 1;
-      background-color: $basic-colors;
-      border-radius: 25px;
       position: relative;
-      cursor: pointer;
 
-      &.all {
-        border-bottom: 3px solid $additional-colors;
-      }
+
 
       span {
         font-size: 22px;
@@ -65,7 +63,13 @@
           display: flex;
         }
       }
+
+      &.sub {
+        flex: 0.5;
+      }
+
     }
+
 
     .action {
       display: none;
@@ -76,9 +80,10 @@
       width: 25px;
       height: 25px;
 
-      &.open{
+      &.open {
         display: flex;
       }
+
       &:hover {
         color: $white;
       }
@@ -110,11 +115,18 @@
           }
 
         }
-
+        .cell {
+          text-align: start;
+        }
         span {
           font-size: 16px;
         }
 
+        &.sub {
+        span{
+          font-size: 12px;
+        }
+        }
       }
     }
   }

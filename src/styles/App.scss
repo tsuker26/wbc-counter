@@ -65,6 +65,7 @@ body {
   }
   .table {
     background-color: $white;
+
     span {
       color: black;
     }
@@ -79,13 +80,23 @@ body {
     }
 
     .body {
-      .row_block{
+      .row_block {
         border: 0;
       }
+
       .row {
         background-color: $white;
         border-radius: 0;
         padding: 0;
+
+        .action {
+          display: none;
+        }
+
+        &.sub {
+          display: none;
+
+        }
 
         span {
           padding: 15px;

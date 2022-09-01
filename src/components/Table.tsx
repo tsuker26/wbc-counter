@@ -43,8 +43,10 @@ const Table: FC<TableProps> = ({cells, setCells, mode, wbc, total, setTotal}) =>
                                       setTotal={setTotal}
                                       wbc={wbc}
                                       deleteRow={deleteRow}/>)}
-                <div className="row all">
-                    <span>{total}/100</span>
+                <div className="row_block">
+                    <div className="row all">
+                        <span>{total}/100</span>
+                    </div>
                 </div>
             </div>
         </div>
