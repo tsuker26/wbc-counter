@@ -20,7 +20,7 @@ const Row: FC<RowProps> = ({cell, mode, setTotal, total, wbc, deleteRow, subCell
     const [displayDelete, setDisplayDelete] = useState<string | undefined>('none')
     const [touchStart, setTouchStart] = useState<number>(0)
     const [rowWidth, setRowWidth] = useState<number>(0)
-    const [subRowActive, setSubRowActive] = useState<boolean>(true)
+    const [subRowActive, setSubRowActive] = useState<boolean>(false)
     const [subCells] = useState(['Myelocytes', 'Metamyelocytes', 'Bandnuclear', 'Segmentednuclear'])
     const rowRef = useRef<HTMLDivElement>(null)
 
