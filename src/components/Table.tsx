@@ -19,15 +19,24 @@ const Table: FC<TableProps> = ({cells, setCells, mode, wbc, total, setTotal}) =>
     return (
         <div className={'table'}>
             <div className={'head'}>
-             <div className="row">
-                 <span className={'cell'}>Cell</span>
-                 <span className={'count'}>Count</span>
-                 <span className={'relative'}>Relative</span>
-                 <span className={'absolute'}>Absolute</span>
-             </div>
+                <div className="row">
+                    <span className={'cell'}>Cell</span>
+                    <span className={'count'}>Count</span>
+                    <span className={'relative'}>Relative</span>
+                    <span className={'absolute'}>Absolute</span>
+                </div>
             </div>
             <div className={'body'}>
+                <Row cell={'Neutrophil'}
+                     mode={mode}
+                     total={total}
+                     wbc={wbc}
+                     subCellsActive={true}
+                     setTotal={setTotal}
+                     deleteRow={deleteRow}/>
+
                 {cells.map(el => <Row key={el}
+                                      subCellsActive={false}
                                       mode={mode}
                                       cell={el}
                                       total={total}

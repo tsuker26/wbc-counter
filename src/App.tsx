@@ -6,7 +6,7 @@ import Print from './components/Print';
 
 function App() {
     const [mode, setMode] = useState<boolean>(true)
-    const [cells, setCells] = useState<string[]>(['Neutrophil', 'Monocyte', 'Lymphocyte', 'Eosinophil', 'Basophil'])
+    const [cells, setCells] = useState<string[]>([ 'Monocyte', 'Lymphocyte', 'Eosinophil', 'Basophil'])
     const [wbc, setWbc] = useState<number>(0)
     const [total, setTotal] = useState<number>(0)
     const clear = () => {
@@ -14,7 +14,7 @@ function App() {
             setTotal(0)
             setMode(true)
             setWbc(0)
-            setCells(['Neutrophil', 'Monocyte', 'Lymphocyte', 'Eosinophil', 'Basophil'])
+            setCells(['Monocyte', 'Lymphocyte', 'Eosinophil', 'Basophil'])
         }
     }
     return (

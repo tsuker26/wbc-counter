@@ -67,7 +67,7 @@
       }
     }
 
-    .delete {
+    .action {
       display: none;
       position: absolute;
       right: 0;
@@ -76,7 +76,9 @@
       width: 25px;
       height: 25px;
 
-
+      &.open{
+        display: flex;
+      }
       &:hover {
         color: $white;
       }
