@@ -1,7 +1,8 @@
-import React, {FC, PointerEvent, TouchEvent, useRef, useState} from 'react';
+import React, {FC, PointerEvent, TouchEvent, useContext, useRef, useState} from 'react';
 import SubRow from "./SubRow";
 import {useTotal} from "../hooks/useTotal";
 import {changeCount} from "../utils/changeCount";
+import {Context} from "../context";
 
 
 type clickRow = PointerEvent<HTMLDivElement> & {
@@ -10,18 +11,14 @@ type clickRow = PointerEvent<HTMLDivElement> & {
 
 type RowProps = {
     cell: string;
-    mode: boolean;
-    total: number;
-    wbc: number;
     subCellsActive: boolean;
-    setTotal: (total: number) => void;
     deleteRow: (cell: string, count: number) => void;
 }
 
 
 const Row: FC<RowProps> =
     ({
-         cell, mode, setTotal, total, wbc, deleteRow, subCellsActive,
+         cell, deleteRow, subCellsActive
      }) => {
         const [count, setCount] = useState<number>(0)
         const [leftRow, setLeftRow] = useState<number>(0)
@@ -29,21 +26,23 @@ const Row: FC<RowProps> =
         const [displayDelete, setDisplayDelete] = useState<string | undefined>('none')
         const [touchStart, setTouchStart] = useState<number>(0)
         const [rowWidth, setRowWidth] = useState<number>(0)
-        const [subRowActive, setSubRowActive] = useState<boolean>(true)
+        const [subRowActive, setSubRowActive] = useState<boolean>(false)
         const [subCells] = useState(['Myelocytes', 'Metamyelocytes', 'Bandnuclear', 'Segmentednuclear'])
         const rowRef = useRef<HTMLDivElement>(null)
+        const {mode, wbc, total, setTotal, maxCount} = useContext(Context)
+
+        //Обнуление  значение счетчика клетки при обнулении общего счетчика
         useTotal({total, setCount})
 
         const relative = ((count * 100) / total);
         const absolute = (relative * wbc) / 100
 
-
-        function handlerDown(e: TouchEvent) {
+        //Удалание свайпом на мобильных устройствах
+        const handlerDown = (e: TouchEvent) => {
             setTouchStart(e.targetTouches[0].clientX)
             if (rowRef.current) setRowWidth(rowRef.current.offsetWidth);
-        }
-
-        function handlerMove(e: TouchEvent) {
+        };
+        const handlerMove = (e: TouchEvent) => {
             let deltaX = e.targetTouches[0].clientX - touchStart
             if (deltaX > 0) deltaX = 0
 
@@ -54,26 +53,27 @@ const Row: FC<RowProps> =
             if (leftRow < -rowWidth / 2) deleteRow(cell, count)
             if (!leftRow) setDisplayDelete('none')
 
-        }
-
-        function handlerUp() {
+        };
+        const handlerUp = () => {
             if (leftRow > -rowWidth / 2) {
                 setLeftRow(0)
                 setDisplayDelete('none')
                 setWidthDelete(0)
             }
+        };
+        //Изменение счетчика(changeClick) и проверка на условия при  которых можно изменять счетчик(check)
+        const changeClick = (e: clickRow) => {
+            if (!e.target.className.includes('action')) changeCount(
+                {mode, total, count, maxCount, setCount, setTotal})
         }
-
         const check = (e: clickRow) => {
-            if (!subCellsActive) {
-                if (!e.target.className.includes('action')) changeCount(
-                    {mode, total, count, setCount, setTotal})
-            }
+            if (subRowActive) {
+                if (!subCellsActive) changeClick(e)
+            } else changeClick(e)
         }
 
         return (
             <>
-
                 <div className={'row_block'}
                      onClick={check}>
                     <div ref={rowRef}
@@ -99,15 +99,13 @@ const Row: FC<RowProps> =
                         </div>
                     }
                 </div>
-                {subCells.map(subCell => <SubRow
-                    display={subCellsActive && subRowActive ? 'flex' : 'none'}
-                    key={subCell}
-                    subCell={subCell}
-                    count={count}
-                    setCount={setCount}
-                    total={total}
-                    mode={mode}
-                    setTotal={setTotal}/>)}
+                {subCells.map(subCell =>
+                    <SubRow key={subCell}
+                            show={subCellsActive && subRowActive}
+                            subCell={subCell}
+                            count={count}
+                            setCount={setCount}
+                            setTotal={setTotal}/>)}
             </>
 
         );

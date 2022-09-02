@@ -1,17 +1,12 @@
-import React, {FC} from 'react';
+import React, {FC, useContext} from 'react';
 import Row from "./Row";
+import {Context} from "../context";
 
-type TableProps = {
-    cells: string[],
-    mode: boolean,
-    wbc: number,
-    total: number,
-    setTotal: (total: number) => void,
-    setCells: (cells: string[]) => void,
-}
 
-const Table: FC<TableProps> = ({cells, setCells, mode, wbc, total, setTotal}) => {
+const Table: FC = () => {
+    const {cells, setCells, total, setTotal, maxCount} = useContext(Context)
 
+    //Удаленин строки
     const deleteRow = (cell: string, count: number) => {
         setTotal(total - count)
         setCells([...cells.filter(row => row !== cell)])
@@ -28,24 +23,16 @@ const Table: FC<TableProps> = ({cells, setCells, mode, wbc, total, setTotal}) =>
             </div>
             <div className={'body'}>
                 <Row cell={'Neutrophil'}
-                     mode={mode}
-                     total={total}
-                     wbc={wbc}
                      subCellsActive={true}
-                     setTotal={setTotal}
                      deleteRow={deleteRow}/>
 
                 {cells.map(el => <Row key={el}
                                       subCellsActive={false}
-                                      mode={mode}
                                       cell={el}
-                                      total={total}
-                                      setTotal={setTotal}
-                                      wbc={wbc}
                                       deleteRow={deleteRow}/>)}
                 <div className="row_block">
                     <div className="row all">
-                        <span>{total}/100</span>
+                        <span>{total}/{maxCount}</span>
                     </div>
                 </div>
             </div>

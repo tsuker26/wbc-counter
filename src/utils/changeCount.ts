@@ -3,14 +3,15 @@ type ChangeCountParam = {
     total: number;
     count: number;
     subCount?: number;
+    maxCount: number;
     setSubCount?: (subCount: number) => void;
     setTotal: (total: number) => void;
     setCount: (count: number) => void;
 }
 
-export const changeCount = ({mode, total, count, subCount, setCount, setSubCount, setTotal}: ChangeCountParam) => {
+export const changeCount = ({mode, total, count, subCount,maxCount, setCount, setSubCount, setTotal}: ChangeCountParam) => {
     if (mode) {
-        if (total === 100) {
+        if (total === maxCount) {
             alert('Максимальное значение !')
             return;
         }

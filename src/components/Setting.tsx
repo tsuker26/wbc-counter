@@ -1,16 +1,14 @@
-import React, {ChangeEvent, FC, useState} from 'react';
+import React, {ChangeEvent, FC, useContext, useState} from 'react';
+import {Context} from "../context";
 
 type SettingProps = {
-    mode: boolean,
-    cells: string[],
-    wbc: number,
-    setWbc: (wbc: number) => void,
-    setMode: (mode: boolean) => void,
-    setCells: (cells: string[]) => void,
     clear: () => void,
 }
 
-const Setting: FC<SettingProps> = ({mode, setMode, cells, setCells, wbc, setWbc, clear}) => {
+const Setting: FC<SettingProps> = ({clear}) => {
+
+    const {mode, setMode, cells, setCells, wbc, setWbc, maxCount, setMaxCount} = useContext(Context)
+
     const [add, setAdd] = useState<string>('')
     const addCell = () => {
         if (add) {
@@ -20,13 +18,19 @@ const Setting: FC<SettingProps> = ({mode, setMode, cells, setCells, wbc, setWbc,
     }
     return (
         <div className={'setting'}>
-            <div className={'input'}>
+            <div className={'input input_wbc'}>
                 <input type="tel"
                        value={wbc}
                        onChange={((e: ChangeEvent<HTMLInputElement>) => setWbc(+e.target.value))}/>
                 <span>10⁹/L</span>
             </div>
-            <div className={'add'}>
+            <div className={'input max_count'}>
+                <input type="tel"
+                       value={maxCount}
+                       onChange={((e: ChangeEvent<HTMLInputElement>) => setMaxCount(+e.target.value))}/>
+                <span>Max</span>
+            </div>
+            <div className={'input add'}>
                 <input
                     type="text"
                     value={add}
