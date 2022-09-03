@@ -28,6 +28,7 @@ const Row: FC<RowProps> =
         const [rowWidth, setRowWidth] = useState<number>(0)
         const [subRowActive, setSubRowActive] = useState<boolean>(false)
         const [subCells] = useState(['Myelocytes', 'Metamyelocytes', 'Bandnuclear', 'Segmentednuclear'])
+        const [rowDelete, setRowDelete] = useState<boolean>(false)
         const rowRef = useRef<HTMLDivElement>(null)
         const {mode, wbc, total, setTotal, maxCount} = useContext(Context)
 
@@ -61,6 +62,12 @@ const Row: FC<RowProps> =
                 setWidthDelete(0)
             }
         };
+
+        //Удаление на десктопе
+        const deleteClick = () => {
+            setRowDelete(true)
+            setTimeout(() => deleteRow(cell, count), 1000)
+        }
         //Изменение счетчика(changeClick) и проверка на условия при  которых можно изменять счетчик(check)
         const changeClick = (e: clickRow) => {
             if (!e.target.className.includes('action')) changeCount(
@@ -74,7 +81,7 @@ const Row: FC<RowProps> =
 
         return (
             <>
-                <div className={'row_block '}
+                <div className={`row_block ${rowDelete ? 'delete_row' : ''}`}
                      onClick={check}>
                     <div ref={rowRef}
                          className={'row'}
@@ -87,7 +94,7 @@ const Row: FC<RowProps> =
                         <span className={'relative'}>{count && `${relative.toFixed(2)}%`}</span>
                         <span className={'absolute'}>{wbc && count && absolute.toFixed(2)}  </span>
                         {!subCellsActive
-                            ? <span onClick={() => deleteRow(cell, count)} className="action delete">x</span>
+                            ? <span onClick={deleteClick} className="action delete">x</span>
                             : <span onClick={() => setSubRowActive(!subRowActive)}
                                     className="action open">{subRowActive ? '↑' : '↓'}</span>}
                     </div>
@@ -99,7 +106,7 @@ const Row: FC<RowProps> =
                         </div>
                     }
                 </div>
-                {subCellsActive&&subCells.map(subCell =>
+                {subCellsActive && subCells.map(subCell =>
                     <SubRow key={subCell}
                             show={subCellsActive && subRowActive}
                             subCell={subCell}

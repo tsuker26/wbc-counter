@@ -17,7 +17,7 @@ const SubRow: FC<subRowProps> = ({subCell, count, setCount, show}) => {
     useTotal({total, setCount: setSubCount})
 
     return (
-        <div className={'row_block sub_block'}
+        <div className={'row_block'}
              style={{display: `${show ? 'flex' : 'none'}`}}
              onClick={() => changeCount(
                  {mode, total, count, maxCount, subCount, setCount, setSubCount, setTotal})}>

@@ -6,6 +6,7 @@
   background-color: $additional-colors;
   border-radius: 25px;
 
+
   .head {
     span {
       font-size: 24px;
@@ -34,10 +35,11 @@
       background-color: $basic-colors;
       border-radius: 25px;
       cursor: pointer;
-
-      &.sub_block {
-        opacity: 0;
-        animation: ani 2s forwards;
+      opacity: 0;
+      animation: ani 2s forwards;
+      &.delete_row{
+        opacity: 1;
+        animation: delete 1s forwards;
       }
 
       .delete_block {
@@ -105,7 +107,14 @@
     opacity: 1;
   }
 }
-
+@keyframes delete {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
 
 
 @media(max-width: 576px) {

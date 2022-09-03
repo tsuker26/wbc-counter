@@ -11,6 +11,7 @@ function App() {
     const [wbc, setWbc] = useState<number>(0)
     const [maxCount, setMaxCount] = useState<number>(100)
     const [total, setTotal] = useState<number>(0)
+
     const defaultValue = () => {
         if (window.confirm('Вы уверенны?')) {
             setTotal(0)
