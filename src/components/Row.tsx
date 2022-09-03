@@ -108,7 +108,7 @@ const Row: FC<RowProps> =
                 </div>
                 {subCellsActive && subCells.map(subCell =>
                     <SubRow key={subCell}
-                            show={subCellsActive && subRowActive}
+                            show={subRowActive}
                             subCell={subCell}
                             count={count}
                             setCount={setCount}
