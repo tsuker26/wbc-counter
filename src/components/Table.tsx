@@ -30,7 +30,7 @@ const Table: FC = () => {
                                       subCellsActive={false}
                                       cell={el}
                                       deleteRow={deleteRow}/>)}
-                <div className="row_block">
+                <div className="row_block ">
                     <div className="row all">
                         <span>{total}/{maxCount}</span>
                     </div>

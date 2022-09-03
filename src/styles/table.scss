@@ -35,6 +35,10 @@
       border-radius: 25px;
       cursor: pointer;
 
+      &.sub_block {
+        opacity: 0;
+        animation: ani 2s forwards;
+      }
 
       .delete_block {
         align-items: center;
@@ -53,7 +57,9 @@
       flex: 1;
       position: relative;
 
-
+      &.sub {
+        flex: 0.5;
+      }
 
       span {
         font-size: 22px;
@@ -65,9 +71,6 @@
         }
       }
 
-      &.sub {
-        flex: 0.5;
-      }
 
     }
 
@@ -94,6 +97,17 @@
 
 }
 
+@keyframes ani {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+
+
 @media(max-width: 576px) {
   .table {
     padding: 0;
@@ -116,17 +130,19 @@
           }
 
         }
+
         .cell {
           text-align: start;
         }
+
         span {
           font-size: 16px;
         }
 
         &.sub {
-        span{
-          font-size: 12px;
-        }
+          span {
+            font-size: 12px;
+          }
         }
       }
     }

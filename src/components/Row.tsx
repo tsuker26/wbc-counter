@@ -74,7 +74,7 @@ const Row: FC<RowProps> =
 
         return (
             <>
-                <div className={'row_block'}
+                <div className={'row_block '}
                      onClick={check}>
                     <div ref={rowRef}
                          className={'row'}
@@ -99,7 +99,7 @@ const Row: FC<RowProps> =
                         </div>
                     }
                 </div>
-                {subCells.map(subCell =>
+                {subCellsActive&&subCells.map(subCell =>
                     <SubRow key={subCell}
                             show={subCellsActive && subRowActive}
                             subCell={subCell}
