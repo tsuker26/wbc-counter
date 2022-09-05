@@ -3,6 +3,7 @@ import SubRow from "./SubRow";
 import {useTotal} from "../hooks/useTotal";
 import {changeCount} from "../utils/changeCount";
 import {Context} from "../context";
+import {calcValue} from "../utils/calcValue";
 
 
 type clickRow = PointerEvent<HTMLDivElement> & {
@@ -11,14 +12,14 @@ type clickRow = PointerEvent<HTMLDivElement> & {
 
 type RowProps = {
     cell: string;
-    subCellsActive: boolean;
+    isSubCells: boolean;
     deleteRow: (cell: string, count: number) => void;
 }
 
 
 const Row: FC<RowProps> =
     ({
-         cell, deleteRow, subCellsActive
+         cell, deleteRow, isSubCells
      }) => {
         const [count, setCount] = useState<number>(0)
         const [leftRow, setLeftRow] = useState<number>(0)
@@ -35,8 +36,6 @@ const Row: FC<RowProps> =
         //Обнуление  значение счетчика клетки при обнулении общего счетчика
         useTotal({total, setCount})
 
-        const relative = ((count * 100) / total);
-        const absolute = (relative * wbc) / 100
 
         //Удалание свайпом на мобильных устройствах
         const handlerDown = (e: TouchEvent) => {
@@ -75,38 +74,42 @@ const Row: FC<RowProps> =
         }
         const check = (e: clickRow) => {
             if (subRowActive) {
-                if (!subCellsActive) changeClick(e)
+                if (!isSubCells) changeClick(e)
             } else changeClick(e)
         }
 
         return (
             <>
-                <div className={`row_block ${rowDelete ? 'delete_row' : ''}`}
+                <div className={`row_block ${isSubCells ? 'is_sub' : ''} ${rowDelete ? 'delete_row' : ''}`}
                      onClick={check}>
                     <div ref={rowRef}
                          className={'row'}
-                         style={!subCellsActive ? {left: `${leftRow}px`} : {left: '0'}}
+                         style={!isSubCells ? {left: `${leftRow}px`} : {left: '0'}}
                          onTouchStart={handlerDown}
                          onTouchMove={handlerMove}
                          onTouchEnd={handlerUp}>
                         <span className={'cell'}>{cell}</span>
                         <span className={'count'}>  {count}</span>
-                        <span className={'relative'}>{count && `${relative.toFixed(2)}%`}</span>
-                        <span className={'absolute'}>{wbc && count && absolute.toFixed(2)}  </span>
-                        {!subCellsActive
+                        <span className={'relative'}>
+                            {count && `${calcValue({count, total, wbc}).relative.toFixed(2)}%`}
+                        </span>
+                        <span className={'absolute'}>
+                            {wbc && count && calcValue({count, total, wbc}).absolute.toFixed(2)}
+                        </span>
+                        {!isSubCells
                             ? <span onClick={deleteClick} className="action delete">x</span>
                             : <span onClick={() => setSubRowActive(!subRowActive)}
                                     className="action open">{subRowActive ? '↑' : '↓'}</span>}
                     </div>
 
-                    {!subCellsActive &&
+                    {!isSubCells &&
                         <div className={'delete_block'}
                              style={{width: `${widthDelete}px`, display: `${displayDelete}`}}>
                             <span>Delete</span>
                         </div>
                     }
                 </div>
-                {subCellsActive && subCells.map(subCell =>
+                {isSubCells && subCells.map(subCell =>
                     <SubRow key={subCell}
                             show={subRowActive}
                             subCell={subCell}

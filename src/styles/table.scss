@@ -62,6 +62,12 @@
 
       &.sub {
         flex: 0.5;
+        span {
+          font-size: 22px;
+        }
+        .relative, .absolute {
+          display: none;
+        }
       }
 
       span {

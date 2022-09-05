@@ -23,11 +23,11 @@ const Table: FC = () => {
             </div>
             <div className={'body'}>
                 <Row cell={'Neutrophil'}
-                     subCellsActive={true}
+                     isSubCells={true}
                      deleteRow={deleteRow}/>
 
                 {cells.map(el => <Row key={el}
-                                      subCellsActive={false}
+                                      isSubCells={false}
                                       cell={el}
                                       deleteRow={deleteRow}/>)}
                 <div className="row_block ">
