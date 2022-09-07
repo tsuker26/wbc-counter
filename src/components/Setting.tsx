@@ -1,5 +1,5 @@
-import React, {ChangeEvent, FC, useContext, useState} from 'react';
-import {Context} from "../context";
+import React, {ChangeEvent, FC, useState} from 'react';
+import {useMainContext} from "../context";
 
 type SettingProps = {
     clear: () => void,
@@ -7,7 +7,7 @@ type SettingProps = {
 
 const Setting: FC<SettingProps> = ({clear}) => {
 
-    const {mode, setMode, cells, setCells, wbc, setWbc, maxCount, setMaxCount} = useContext(Context)
+    const {mode, setMode, cells, setCells, wbc, setWbc, maxCount, setMaxCount} = useMainContext()
 
     const [add, setAdd] = useState<string>('')
     const addCell = () => {

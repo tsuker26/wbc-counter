@@ -1,11 +1,11 @@
-import React, {FC, useContext} from 'react';
+import React, {FC} from 'react';
 import Print from "./Print";
 import Setting from "./Setting";
 import Table from "./Table";
-import {Context} from "../context";
+import {useMainContext} from "../context";
 
 const Main: FC = () => {
-    const {wbc, setTotal, setMode, setWbc, setMaxCount, setCells} = useContext(Context)
+    const {wbc, setTotal, setMode, setWbc, setMaxCount, setCells} = useMainContext()
     const defaultValue = () => {
         if (window.confirm('Вы уверенны?')) {
             setTotal(0)

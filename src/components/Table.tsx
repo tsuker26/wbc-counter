@@ -1,10 +1,10 @@
-import React, {FC, useContext} from 'react';
+import React, {FC} from 'react';
 import Row from "./Row";
-import {Context} from "../context";
+import {useMainContext} from "../context";
 
 
 const Table: FC = () => {
-    const {cells, setCells, total, setTotal, maxCount} = useContext(Context)
+    const {cells, setCells, total, setTotal, maxCount} = useMainContext()
 
     //Удаленин строки
     const deleteRow = (cell: string, count: number) => {

@@ -1,4 +1,4 @@
-import {createContext, FC, PropsWithChildren, useState} from "react";
+import {createContext, FC, PropsWithChildren, useContext, useState} from "react";
 
 export interface IContext {
     mode: boolean,
@@ -13,7 +13,9 @@ export interface IContext {
     setTotal: (total: number) => void,
 }
 
-export const Context = createContext<IContext>({} as IContext)
+const MainContext = createContext<IContext>({} as IContext)
+
+export const useMainContext = () => useContext(MainContext)
 
 const ContextProvider: FC<PropsWithChildren> = ({children}) => {
     const [mode, setMode] = useState<boolean>(true)
@@ -34,9 +36,9 @@ const ContextProvider: FC<PropsWithChildren> = ({children}) => {
         setTotal,
     }
     return (
-        <Context.Provider value={value}>
+        <MainContext.Provider value={value}>
             {children}
-        </Context.Provider>
+        </MainContext.Provider>
     )
 }
 export default ContextProvider

@@ -1,8 +1,8 @@
-import React, {FC, PointerEvent, TouchEvent, useContext, useRef, useState} from 'react';
+import React, {FC, PointerEvent, TouchEvent, useRef, useState} from 'react';
 import SubRow from "./SubRow";
 import {useTotal} from "../hooks/useTotal";
 import {changeCount} from "../utils/changeCount";
-import {Context} from "../context";
+import {useMainContext} from "../context";
 import {calcValue} from "../utils/calcValue";
 
 
@@ -31,7 +31,7 @@ const Row: FC<RowProps> =
         const [subCells] = useState(['Myelocytes', 'Metamyelocytes', 'Bandnuclear', 'Segmentednuclear'])
         const [rowDelete, setRowDelete] = useState<boolean>(false)
         const rowRef = useRef<HTMLDivElement>(null)
-        const {mode, wbc, total, setTotal, maxCount} = useContext(Context)
+        const {mode, wbc, total, setTotal, maxCount} = useMainContext()
 
         //Обнуление  значение счетчика клетки при обнулении общего счетчика
         useTotal({total, setCount})
