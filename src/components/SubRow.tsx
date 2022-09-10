@@ -8,17 +8,18 @@ type subRowProps = {
     subCell: string,
     count: number,
     show: boolean,
+    hiding: boolean,
     setCount: (count: number) => void,
     setTotal: (total: number) => void,
 }
-const SubRow: FC<subRowProps> = ({subCell, count, setCount, show}) => {
+const SubRow: FC<subRowProps> = ({subCell, count, setCount, show,hiding}) => {
     const [subCount, setSubCount] = useState<number>(0)
     const {mode, total, setTotal, maxCount, wbc} = useMainContext()
     //Обнуление  значение счетчика клетки при обнулении общего счетчика
     useTotal({total, setCount: setSubCount})
 
     return (
-        <div className={'row_block sub_block'}
+        <div className={`row_block sub_block ${!hiding?'delete_row':''}`}
              style={{display: `${show ? 'flex' : 'none'}`}}
              onClick={() => changeCount(
                  {mode, total, count, maxCount, subCount, setCount, setSubCount, setTotal})}>

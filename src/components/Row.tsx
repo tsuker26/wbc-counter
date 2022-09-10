@@ -30,6 +30,7 @@ const Row: FC<RowProps> =
         const [subRowActive, setSubRowActive] = useState<boolean>(false)
         const [subCells] = useState(['Myelocytes', 'Metamyelocytes', 'Bandnuclear', 'Segmentednuclear'])
         const [rowDelete, setRowDelete] = useState<boolean>(false)
+        const [hidingSubRow, setHidingSubRow] = useState<boolean>(false)
         const rowRef = useRef<HTMLDivElement>(null)
         const {mode, wbc, total, setTotal, maxCount} = useMainContext()
 
@@ -62,6 +63,11 @@ const Row: FC<RowProps> =
             }
         };
 
+        const hidingSub = () => {
+            setHidingSubRow(!hidingSubRow)
+            if (hidingSubRow) setTimeout(() => setSubRowActive(false), 1000)
+            else setSubRowActive(true)
+        }
         //Удаление на десктопе
         const deleteClick = () => {
             setRowDelete(true)
@@ -98,8 +104,8 @@ const Row: FC<RowProps> =
                         </span>
                         {!isSubCells
                             ? <span onClick={deleteClick} className="action delete">x</span>
-                            : <span onClick={() => setSubRowActive(!subRowActive)}
-                                    className={`action toggle ${subRowActive?'close':'open'}`}>↓</span>}
+                            : <span onClick={hidingSub}
+                                    className={`action toggle ${hidingSubRow ? 'close' : 'open'}`}>↓</span>}
                     </div>
 
                     {!isSubCells &&
@@ -111,6 +117,7 @@ const Row: FC<RowProps> =
                 </div>
                 {isSubCells && subCells.map(subCell =>
                     <SubRow key={subCell}
+                            hiding={hidingSubRow}
                             show={subRowActive}
                             subCell={subCell}
                             count={count}
