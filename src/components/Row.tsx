@@ -80,7 +80,7 @@ const Row: FC<RowProps> =
 
         return (
             <>
-                <div className={`row_block ${isSubCells ? 'is_sub' : ''} ${rowDelete ? 'delete_row' : ''}`}
+                <div className={`row_block  ${rowDelete ? 'delete_row' : ''}`}
                      onClick={check}>
                     <div ref={rowRef}
                          className={'row'}
@@ -99,7 +99,7 @@ const Row: FC<RowProps> =
                         {!isSubCells
                             ? <span onClick={deleteClick} className="action delete">x</span>
                             : <span onClick={() => setSubRowActive(!subRowActive)}
-                                    className="action open">{subRowActive ? '↑' : '↓'}</span>}
+                                    className={`action toggle ${subRowActive?'close':'open'}`}>↓</span>}
                     </div>
 
                     {!isSubCells &&

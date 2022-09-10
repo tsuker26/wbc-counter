@@ -62,9 +62,11 @@
 
       &.sub {
         flex: 0.5;
+
         span {
           font-size: 22px;
         }
+
         .relative, .absolute {
           display: none;
         }
@@ -87,14 +89,21 @@
     .action {
       display: none;
       position: absolute;
-      right: 0;
+      right: 10px;
       cursor: pointer;
       color: gray;
       width: 25px;
       height: 25px;
+      transition: all 1s linear;
 
-      &.open {
+      &.toggle {
         display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &.close {
+          transform: rotate(180deg);
+        }
       }
 
       &:hover {
