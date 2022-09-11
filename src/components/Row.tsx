@@ -62,7 +62,7 @@ const Row: FC<RowProps> =
                 setWidthDelete(0)
             }
         };
-
+        //Показ/скрытие подстрок
         const hidingSub = () => {
             setHidingSubRow(!hidingSubRow)
             if (hidingSubRow) setTimeout(() => setSubRowActive(false), 1000)
