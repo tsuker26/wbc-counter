@@ -23,9 +23,9 @@ const ContextProvider: FC<PropsWithChildren> = ({children}) => {
     const [wbc, setWbc] = useState<number>(0)
     const [maxCount, setMaxCount] = useState<number>(100)
     const [total, setTotal] = useState<number>(0)
-    const value = useMemo(()=>
-        ({mode, setMode, cells, setCells, wbc, setWbc, maxCount, setMaxCount, total, setTotal}),
-        [mode,cells,wbc,maxCount,total])
+    const value = useMemo(() =>
+            ({mode, setMode, cells, setCells, wbc, setWbc, maxCount, setMaxCount, total, setTotal}),
+        [mode, cells, wbc, maxCount, total])
     return (
         <MainContext.Provider
             value={value}>

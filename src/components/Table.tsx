@@ -3,14 +3,12 @@ import TableHead from "./TableHead";
 import TableBody from "./TableBody";
 
 
-const Table: FC = () => {
-    return (
-        <div className={'table'}>
-            <TableHead/>
-            <TableBody/>
-        </div>
-    );
-};
+const Table: FC = () => (
+    <div className={'table'}>
+        <TableHead/>
+        <TableBody/>
+    </div>
+);
 
 
 export default Table;

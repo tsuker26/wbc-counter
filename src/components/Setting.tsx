@@ -19,13 +19,13 @@ const Setting: FC<SettingProps> = ({clear}) => {
     return (
         <div className={'setting'}>
             <div className={'input input_wbc'}>
-                <input type="tel"
+                <input type="number"
                        value={wbc}
                        onChange={((e: ChangeEvent<HTMLInputElement>) => setWbc(+e.target.value))}/>
                 <span>10⁹/L</span>
             </div>
             <div className={'input max_count'}>
-                <input type="tel"
+                <input type="number"
                        value={maxCount}
                        onChange={((e: ChangeEvent<HTMLInputElement>) => setMaxCount(+e.target.value))}/>
                 <span>Max</span>
