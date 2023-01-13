@@ -7,7 +7,7 @@ type SettingProps = {
 
 const Setting: FC<SettingProps> = ({clear}) => {
 
-    const {mode, setMode, cells, setCells, setWbc, maxCount, setMaxCount} = useMainContext()
+    const {mode, setMode, cells, setCells, setWbc, maxCount, setMaxCount,modeCells,setModeCells} = useMainContext()
 
     const [add, setAdd] = useState<string>('')
     const [inputWbc, setInputWbc] = useState<string>('')
@@ -47,6 +47,8 @@ const Setting: FC<SettingProps> = ({clear}) => {
                 <button onClick={clear}>Default</button>
                 <button onClick={() => setMode(false)} className={!mode ? 'active' : ''}>-</button>
                 <button onClick={() => setMode(true)} className={mode ? 'active' : ''}>+</button>
+                <button onClick={() => setModeCells(true)} className={modeCells ? 'active' : ''}>Cells</button>
+                <button onClick={() => setModeCells(false)} className={!modeCells ? 'active' : ''}>Cells Dogs</button>
             </div>
         </div>
     );

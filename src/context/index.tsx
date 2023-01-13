@@ -11,6 +11,8 @@ export interface IContext {
     setMaxCount: (maxCount: number) => void,
     total: number,
     setTotal: (total: number) => void,
+    modeCells: boolean,
+    setModeCells: (mode: boolean) => void,
 }
 
 const MainContext = createContext<IContext>({} as IContext)
@@ -19,13 +21,28 @@ export const useMainContext = () => useContext(MainContext)
 
 const ContextProvider: FC<PropsWithChildren> = ({children}) => {
     const [mode, setMode] = useState<boolean>(true)
+    const [modeCells, setModeCells] = useState<boolean>(true)
     const [cells, setCells] = useState<string[]>(['Monocyte', 'Lymphocyte', 'Eosinophil', 'Basophil'])
     const [wbc, setWbc] = useState<number>(0)
     const [maxCount, setMaxCount] = useState<number>(100)
     const [total, setTotal] = useState<number>(0)
+
     const value = useMemo(() =>
-            ({mode, setMode, cells, setCells, wbc, setWbc, maxCount, setMaxCount, total, setTotal}),
-        [mode, cells, wbc, maxCount, total])
+            ({
+                mode,
+                setMode,
+                cells,
+                setCells,
+                wbc,
+                setWbc,
+                maxCount,
+                setMaxCount,
+                total,
+                setTotal,
+                modeCells,
+                setModeCells,
+            }),
+        [mode, cells, wbc, maxCount, total,modeCells])
     return (
         <MainContext.Provider
             value={value}>

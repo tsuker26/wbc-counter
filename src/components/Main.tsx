@@ -5,14 +5,16 @@ import Table from "./Table";
 import {useMainContext} from "../context";
 
 const Main: FC = () => {
-    const {wbc, setTotal, setMode, setWbc, setMaxCount, setCells} = useMainContext()
+    const {wbc, setTotal, setMode, setWbc, setMaxCount, setCells,modeCells} = useMainContext()
     const defaultValue = () => {
         if (window.confirm('Вы уверенны?')) {
             setTotal(0)
             setMode(true)
             setWbc(0)
             setMaxCount(100)
-            setCells(['Monocyte', 'Lymphocyte', 'Eosinophil', 'Basophil'])
+            modeCells
+                ? setCells(['Monocyte', 'Lymphocyte', 'Eosinophil', 'Basophil'])
+                : setCells(['CellDogs1', 'CellDogs2', 'CellDogs3', 'CellDogs4', 'CellDogs5'])
         }
     }
 
