@@ -18,10 +18,32 @@ body {
 .App {
   max-width: 1200px;
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.content {
+  flex: 1
 }
 
 .print {
   display: none;
+}
+
+.footer {
+  align-self: flex-end;
+  width: 100%;
+  height: 50px;
+  padding: 20px 0;
+  border-top: 1px solid #545454;
+
+  span {
+    margin-left: 15px;
+    align-self: center;
+    font-size: 18px;
+    color: #545454;
+  }
 }
 
 .print_info {
@@ -52,6 +74,7 @@ body {
   }
 }
 
+
 @media print {
   body {
     background-color: $white;
@@ -65,6 +88,7 @@ body {
   }
   .table {
     background-color: $white;
+
     span {
 
       color: black;
@@ -94,11 +118,13 @@ body {
         }
 
         &.sub {
-          flex:1;
-          .cell{
+          flex: 1;
+
+          .cell {
             flex-basis: 66.6%;
           }
-          .absolute{
+
+          .absolute {
             display: flex;
             flex-basis: 33.3%;
             text-align: center;
