@@ -1,7 +1,9 @@
 @import "variables";
-@import "table";
+@import "src/components/Table/table";
 @import "button";
-@import "setting";
+@import "src/components/Setting/setting";
+@import "src/components/Print/print";
+@import "src/components/UI/Selector/selector";
 
 * {
   margin: 0;
@@ -26,11 +28,6 @@ body {
 .content {
   flex: 1
 }
-
-.print {
-  display: none;
-}
-
 .footer {
   align-self: flex-end;
   width: 100%;
@@ -46,109 +43,6 @@ body {
   }
 }
 
-.print_info {
-  display: block;
 
-  .info {
-    display: block;
-    border-bottom: 1px solid black;
-    padding-top: 15px;
-    padding-bottom: 3px;
-
-    p {
-      font-size: 20px;
-      color: black;
-    }
-  }
-}
-
-.wbc {
-  display: inline-block;
-  padding: 10px;
-  margin-top: 25px;
-  border: 1px solid black;
-
-  span {
-    font-size: 20px;
-    color: black;
-  }
-}
-
-
-@media print {
-  body {
-    background-color: $white;
-    height: 100vh;
-  }
-  .print {
-    display: block;
-  }
-  .setting {
-    display: none;
-  }
-  .table {
-    background-color: $white;
-
-    span {
-
-      color: black;
-    }
-
-    .row {
-
-      border-radius: 0;
-
-      .count {
-        display: none;
-      }
-    }
-
-    .body {
-      .row_block {
-        border: 0;
-      }
-
-      .row {
-        background-color: $white;
-        border-radius: 0;
-        padding: 0;
-
-        .action {
-          display: none;
-        }
-
-        &.sub {
-          flex: 1;
-
-          .cell {
-            flex-basis: 66.6%;
-          }
-
-          .absolute {
-            display: flex;
-            flex-basis: 33.3%;
-            text-align: center;
-          }
-        }
-
-        span {
-          padding: 15px;
-          border: 0.5px solid black;
-
-        }
-
-        .delete {
-          display: none;
-        }
-
-        &.all {
-          display: none;
-        }
-      }
-    }
-  }
-
-
-}
 
 

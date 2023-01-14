@@ -1,0 +1,22 @@
+@import "src/styles/variables";
+
+  .select {
+    padding: 10px 15px;
+    margin: 5px;
+    background-color: $basic-colors;
+    color: $white;
+    border: 1px solid $additional-colors;
+    border-radius: 25px;
+    cursor: pointer;
+    box-shadow: 2px 3px 2px rgba(0, 0, 0, 0.5);
+    &:hover {
+      background-color: #1e66bf;
+    }
+
+    &.active {
+      background-color: $white;
+      color: $basic-colors;
+      box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    }
+
+  }

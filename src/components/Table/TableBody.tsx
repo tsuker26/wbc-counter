@@ -1,6 +1,6 @@
 import React, {FC, useEffect} from 'react';
-import Row from "./Row";
-import {useMainContext} from "../context";
+import Row from "./Row/Row";
+import {useMainContext} from "../../context";
 
 const TableBody: FC = () => {
     const {cells, setCells, total, setTotal, maxCount, modeCells} = useMainContext()

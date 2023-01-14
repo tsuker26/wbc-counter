@@ -1,9 +1,9 @@
 import React, {FC, PointerEvent, TouchEvent, useRef, useState} from 'react';
 import SubRow from "./SubRow";
-import {useTotal} from "../hooks/useTotal";
-import {changeCount} from "../utils/changeCount";
-import {useMainContext} from "../context";
-import {calcValue} from "../utils/calcValue";
+import {useTotal} from "../../../hooks/useTotal";
+import {changeCount} from "../../../utils/changeCount";
+import {useMainContext} from "../../../context";
+import {calcValue} from "../../../utils/calcValue";
 
 
 type clickRow = PointerEvent<HTMLDivElement> & {

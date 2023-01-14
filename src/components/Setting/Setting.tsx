@@ -1,5 +1,6 @@
 import React, {ChangeEvent, FC, useState} from 'react';
-import {useMainContext} from "../context";
+import {useMainContext} from "../../context";
+import Selector from "../UI/Selector/Selector";
 
 type SettingProps = {
     clear: () => void,
@@ -45,10 +46,9 @@ const Setting: FC<SettingProps> = ({clear}) => {
             <div className={'btn'}>
                 <button onClick={() => window.print()}>Print</button>
                 <button onClick={clear}>Default</button>
-                <button onClick={() => setMode(false)} className={!mode ? 'active' : ''}>-</button>
-                <button onClick={() => setMode(true)} className={mode ? 'active' : ''}>+</button>
-                <button onClick={() => setModeCells(true)} className={modeCells ? 'active' : ''}>Cells</button>
-                <button onClick={() => setModeCells(false)} className={!modeCells ? 'active' : ''}>Cells Dogs</button>
+                <Selector fn={setMode} mode={mode} selectOne={'-'} selectTwo={'+'}/>
+                <Selector fn={setModeCells} mode={modeCells} selectOne={'Cells Blood'} selectTwo={'Cells Dogs'}/>
+
             </div>
         </div>
     );

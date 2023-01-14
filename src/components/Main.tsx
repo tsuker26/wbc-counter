@@ -1,7 +1,7 @@
 import React, {FC} from 'react';
-import Print from "./Print";
-import Setting from "./Setting";
-import Table from "./Table";
+import Print from "./Print/Print";
+import Setting from "./Setting/Setting";
+import Table from "./Table/Table";
 import {useMainContext} from "../context";
 import Footer from "./Footer";
 
