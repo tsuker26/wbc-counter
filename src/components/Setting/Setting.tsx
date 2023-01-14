@@ -42,7 +42,7 @@ const Setting: FC<SettingProps> = ({clear}) => {
                     type="text"
                     value={add}
                     onChange={((e: ChangeEvent<HTMLInputElement>) => setAdd(e.target.value))}/>
-                <button onClick={addCell}>Add</button>
+                <Button fn={addCell}>Add</Button>
             </div>
             <div className={'btn'}>
                 <Button fn={window.print}>Print</Button>

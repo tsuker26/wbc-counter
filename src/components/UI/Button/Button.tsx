@@ -4,6 +4,6 @@ interface buttonProps {
     fn: () => void
 }
 
-const Button: FC<PropsWithChildren<buttonProps>> = ({fn, children}) => <button onClick={fn}>{children}</button>;
+const Button: FC<PropsWithChildren<buttonProps>> = ({fn, children}) => <button className={'button'} onClick={fn}>{children}</button>;
 
 export default Button;

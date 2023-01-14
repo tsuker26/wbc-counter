@@ -64,9 +64,12 @@ const Row: FC<RowProps> =
         };
         //Показ/скрытие подстрок
         const hidingSub = () => {
-            setHidingSubRow(!hidingSubRow)
-            if (hidingSubRow) setTimeout(() => setSubRowActive(false), 1000)
-            else setSubRowActive(true)
+           if(count===0){
+               setHidingSubRow(!hidingSubRow)
+               if (hidingSubRow) setTimeout(() => setSubRowActive(false), 1000)
+               else setSubRowActive(true)
+           }else    alert('Сбросьте в начальное состояние ')
+
         }
         //Удаление на десктопе
         const deleteClick = () => {
