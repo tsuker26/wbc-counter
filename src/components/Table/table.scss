@@ -1,4 +1,4 @@
-@import "variables";
+@import "src/styles/variables";
 
 .table {
   margin: 15px auto;
@@ -66,9 +66,7 @@
           font-size: 22px;
         }
 
-        .relative, .absolute {
-          display: none;
-        }
+
       }
 
       span {
@@ -110,6 +108,7 @@
         color: $white;
       }
     }
+
 
   }
 

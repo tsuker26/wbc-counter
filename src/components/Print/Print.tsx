@@ -1,7 +1,7 @@
-import React, {FC} from 'react';
+import {FC} from 'react';
 
 
-const Print: FC<Record<string, number>> = ({wbc}) => (
+const Print: FC<Record<string, string>> = ({wbc}) => (
     <div className={'print'}>
         <div className={'print_info'}>
             <div className={'info'}>

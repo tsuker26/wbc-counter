@@ -1,7 +1,7 @@
 interface calcParam {
     count: number,
     total: number,
-    wbc: number,
+    wbc: string,
 }
 
 interface returnCalc {
@@ -11,6 +11,6 @@ interface returnCalc {
 
 export const calcValue = ({count, total, wbc}: calcParam): returnCalc => {
     const relative = ((count * 100) / total);
-    const absolute = (relative * wbc) / 100
+    const absolute = (relative * +wbc) / 100
     return {relative, absolute}
 }

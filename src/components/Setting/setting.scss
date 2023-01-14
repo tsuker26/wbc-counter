@@ -1,4 +1,4 @@
-@import "variables";
+@import "src/styles/variables";
 
 .setting {
   display: flex;
@@ -18,6 +18,9 @@
 
   span {
     margin-left: 5px;
+  }
+  .btn {
+    display: flex;
   }
 
 }

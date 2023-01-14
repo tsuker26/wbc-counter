@@ -1,9 +1,9 @@
-import React from 'react';
+import {FC} from 'react';
 
-const Footer = () => {
+const Footer:FC = () => {
     return (
         <footer className={'footer'}>
-            <span>©Tsuker Corp {new Date().getFullYear()}</span>
+            <a href={'https://vk.com/tsuker26'}>©Tsuker Corp {new Date().getFullYear()}</a>
         </footer>
     );
 };
