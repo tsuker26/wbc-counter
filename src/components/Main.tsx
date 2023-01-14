@@ -1,9 +1,10 @@
-import React, {FC} from 'react';
+import  {FC} from 'react';
 import Print from "./Print/Print";
 import Setting from "./Setting/Setting";
 import Table from "./Table/Table";
 import {useMainContext} from "../context";
 import Footer from "./Footer";
+import Header from "./Header";
 
 const Main: FC = () => {
     const {wbc, setTotal, setMode, setWbc, setMaxCount, setCells,modeCells} = useMainContext()
@@ -21,6 +22,7 @@ const Main: FC = () => {
 
     return (
         <div className="App">
+            <Header/>
             <div className={'content'}>
                 <Print wbc={wbc}/>
                 <Setting clear={defaultValue}/>

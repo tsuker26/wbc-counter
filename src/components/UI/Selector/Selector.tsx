@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import  {FC} from 'react';
 interface selectorProps {
     fn:(mode:boolean)=>void,
     mode:boolean,
@@ -8,8 +8,8 @@ interface selectorProps {
 const Selector:FC<selectorProps> = ({fn,mode,selectOne,selectTwo}) => {
     return  (
         <>
-            <div onClick={()=>fn(!mode)} className={`select ${!mode ? 'active' : ''}`}>{selectOne}</div>
-            <div onClick={()=>fn(!mode)} className={`select ${mode ? 'active' : ''}`}>{selectTwo}</div>
+            <button onClick={()=>fn(!mode)} className={`select ${!mode ? 'active' : ''}`}>{selectOne}</button>
+            <button onClick={()=>fn(!mode)} className={`select ${mode ? 'active' : ''}`}>{selectTwo}</button>
         </>
     )
 };

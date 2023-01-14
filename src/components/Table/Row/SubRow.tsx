@@ -1,4 +1,4 @@
-import React, {FC, useState} from 'react';
+import {FC, useState} from 'react';
 import {useTotal} from "../../../hooks/useTotal";
 import {changeCount} from "../../../utils/changeCount";
 import {useMainContext} from "../../../context";

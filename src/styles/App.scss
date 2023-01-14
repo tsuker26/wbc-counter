@@ -1,6 +1,6 @@
 @import "variables";
 @import "src/components/Table/table";
-@import "button";
+@import "src/components/UI/Button/button";
 @import "src/components/Setting/setting";
 @import "src/components/Print/print";
 @import "src/components/UI/Selector/selector";
@@ -25,9 +25,27 @@ body {
   min-height: 100vh;
 }
 
+.header {
+  border-bottom: 3px solid $additional-colors;
+  padding: 10px;
+  box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.3);
+  border-radius: 50px;
+  .logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    width: 60px;
+    height: 60px;
+    background-color:$additional-colors;
+    border-radius: 50%;
+  }
+}
+
 .content {
   flex: 1
 }
+
 .footer {
   align-self: flex-end;
   width: 100%;
