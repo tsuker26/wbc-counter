@@ -11,7 +11,7 @@ const Main: FC = () => {
     const defaultValue = () => {
         if (window.confirm('Вы уверенны?')) {
             setTotal(0)
-            setMode(true)
+            setMode('+')
             setWbc(0)
             setMaxCount(100)
             modeCells

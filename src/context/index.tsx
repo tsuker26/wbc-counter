@@ -1,8 +1,8 @@
 import {createContext, FC, PropsWithChildren, useContext, useMemo, useState} from "react";
 
 export interface IContext {
-    mode: boolean,
-    setMode: (mode: boolean) => void,
+    mode: string,
+    setMode: (mode: string) => void,
     cells: string[],
     setCells: (cells: string[]) => void,
     wbc: number,
@@ -11,8 +11,8 @@ export interface IContext {
     setMaxCount: (maxCount: number) => void,
     total: number,
     setTotal: (total: number) => void,
-    modeCells: boolean,
-    setModeCells: (mode: boolean) => void,
+    modeCells: string,
+    setModeCells: (mode: string) => void,
 }
 
 const MainContext = createContext<IContext>({} as IContext)
@@ -20,8 +20,8 @@ const MainContext = createContext<IContext>({} as IContext)
 export const useMainContext = () => useContext(MainContext)
 
 const ContextProvider: FC<PropsWithChildren> = ({children}) => {
-    const [mode, setMode] = useState<boolean>(true)
-    const [modeCells, setModeCells] = useState<boolean>(true)
+    const [mode, setMode] = useState<string>('+')
+    const [modeCells, setModeCells] = useState<string>('Cells blood')
     const [cells, setCells] = useState<string[]>(['Monocyte', 'Lymphocyte', 'Eosinophil', 'Basophil'])
     const [wbc, setWbc] = useState<number>(0)
     const [maxCount, setMaxCount] = useState<number>(100)

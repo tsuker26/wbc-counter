@@ -2,7 +2,6 @@ import {FC, useState} from 'react';
 import {useTotal} from "../../../hooks/useTotal";
 import {changeCount} from "../../../utils/changeCount";
 import {useMainContext} from "../../../context";
-import {calcValue} from "../../../utils/calcValue";
 
 type subRowProps = {
     subCell: string,
@@ -14,7 +13,7 @@ type subRowProps = {
 }
 const SubRow: FC<subRowProps> = ({subCell, count, setCount, show,hiding}) => {
     const [subCount, setSubCount] = useState<number>(0)
-    const {mode, total, setTotal, maxCount, wbc} = useMainContext()
+    const {mode, total, setTotal, maxCount} = useMainContext()
     //Обнуление  значение счетчика клетки при обнулении общего счетчика
     useTotal({total, setCount: setSubCount})
 
@@ -26,12 +25,7 @@ const SubRow: FC<subRowProps> = ({subCell, count, setCount, show,hiding}) => {
             <div className={'sub row'}>
                 <span className={'cell'}>{subCell}</span>
                 <span className={'count'}>{subCount}</span>
-                {/*<span className={'relative'}>*/}
-                {/*            {count && `${calcValue({count: subCount, total: count, wbc}).relative.toFixed(2)}%`}*/}
-                {/*</span>*/}
-                <span className={'absolute'}>
-                    {wbc && count && calcValue({count: subCount, total, wbc}).absolute.toFixed(2)}
-                </span>
+
             </div>
         </div>
     );

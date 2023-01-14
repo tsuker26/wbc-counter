@@ -1,25 +1,30 @@
-import {FC, useEffect} from 'react';
+import {FC, useEffect, useState} from 'react';
 import Row from "./Row/Row";
 import {useMainContext} from "../../context";
 
 const TableBody: FC = () => {
     const {cells, setCells, total, setTotal, maxCount, modeCells} = useMainContext()
+    const [subCells] = useState(['Myelocytes', 'Metamyelocytes', 'Bandnuclear', 'Segmentednuclear'])
+
     //Удаленин строки
     const deleteRow = (cell: string, count: number) => {
         setTotal(total - count)
         setCells([...cells.filter(row => row !== cell)])
     }
     useEffect(() => {
-        modeCells
-            ? setCells(['Monocyte', 'Lymphocyte', 'Eosinophil', 'Basophil'])
-            : setCells(['CellDogs1', 'CellDogs2', 'CellDogs3', 'CellDogs4', 'CellDogs5'])
         setTotal(0)
+        if (modeCells === 'Cells blood') {
+            setCells(['Monocyte', 'Lymphocyte', 'Eosinophil', 'Basophil'])
+        } else if (modeCells === 'Cells dogs') {
+            setCells(['CellDogs1', 'CellDogs2', 'CellDogs3', 'CellDogs4', 'CellDogs5'])
+        }
     }, [modeCells])
     return (
         <div className={'body'}>
-            {modeCells && <Row cell={'Neutrophil'}
-                               isSubCells={true}
-                               deleteRow={deleteRow}/>}
+            {modeCells === 'Cells blood' && <Row cell={'Neutrophil'}
+                                                 subCells={subCells}
+                                                 isSubCells={true}
+                                                 deleteRow={deleteRow}/>}
 
             {cells.map(el => <Row key={el}
                                   isSubCells={false}

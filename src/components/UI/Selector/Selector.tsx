@@ -1,15 +1,16 @@
-import  {FC} from 'react';
+import {FC} from 'react';
+
 interface selectorProps {
-    fn:(mode:boolean)=>void,
-    mode:boolean,
-    selectOne:string,
-    selectTwo:string,
+    fn: (select: string) => void,
+    selectActive: string
+    selectors: string[]
 }
-const Selector:FC<selectorProps> = ({fn,mode,selectOne,selectTwo}) => {
-    return  (
+
+const Selector: FC<selectorProps> = ({fn, selectActive, selectors}) => {
+    return (
         <>
-            <button onClick={()=>fn(!mode)} className={`select ${!mode ? 'active' : ''}`}>{selectOne}</button>
-            <button onClick={()=>fn(!mode)} className={`select ${mode ? 'active' : ''}`}>{selectTwo}</button>
+            {selectors.map(select => <button onClick={() => fn(select)}
+                                             className={`select ${select === selectActive ? 'active' : ''}`}>{select}</button>)}
         </>
     )
 };

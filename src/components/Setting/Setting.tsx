@@ -47,8 +47,8 @@ const Setting: FC<SettingProps> = ({clear}) => {
             <div className={'btn'}>
                 <Button fn={window.print}>Print</Button>
                 <Button fn={clear}>Default</Button>
-                <Selector fn={setMode} mode={mode} selectOne={'-'} selectTwo={'+'}/>
-                <Selector fn={setModeCells} mode={modeCells} selectOne={'Cells Blood'} selectTwo={'Cells Dogs'}/>
+                <Selector fn={setMode} selectActive={mode} selectors={['-','+']} />
+                <Selector fn={setModeCells} selectActive={modeCells} selectors={['Cells blood','Cells dogs']}/>
             </div>
         </div>
     );

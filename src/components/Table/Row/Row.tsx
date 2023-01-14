@@ -1,4 +1,4 @@
-import  {FC, PointerEvent, TouchEvent, useRef, useState} from 'react';
+import {FC, PointerEvent, TouchEvent, useRef, useState} from 'react';
 import SubRow from "./SubRow";
 import {useTotal} from "../../../hooks/useTotal";
 import {changeCount} from "../../../utils/changeCount";
@@ -13,13 +13,14 @@ type clickRow = PointerEvent<HTMLDivElement> & {
 type RowProps = {
     cell: string;
     isSubCells: boolean;
+    subCells?: string[],
     deleteRow: (cell: string, count: number) => void;
 }
 
 
 const Row: FC<RowProps> =
     ({
-         cell, deleteRow, isSubCells
+         cell, isSubCells, subCells, deleteRow
      }) => {
         const [count, setCount] = useState<number>(0)
         const [leftRow, setLeftRow] = useState<number>(0)
@@ -28,7 +29,6 @@ const Row: FC<RowProps> =
         const [touchStart, setTouchStart] = useState<number>(0)
         const [rowWidth, setRowWidth] = useState<number>(0)
         const [subRowActive, setSubRowActive] = useState<boolean>(false)
-        const [subCells] = useState(['Myelocytes', 'Metamyelocytes', 'Bandnuclear', 'Segmentednuclear'])
         const [rowDelete, setRowDelete] = useState<boolean>(false)
         const [hidingSubRow, setHidingSubRow] = useState<boolean>(false)
         const rowRef = useRef<HTMLDivElement>(null)
@@ -64,12 +64,9 @@ const Row: FC<RowProps> =
         };
         //Показ/скрытие подстрок
         const hidingSub = () => {
-           if(count===0){
-               setHidingSubRow(!hidingSubRow)
-               if (hidingSubRow) setTimeout(() => setSubRowActive(false), 1000)
-               else setSubRowActive(true)
-           }else    alert('Сбросьте в начальное состояние ')
-
+            setHidingSubRow(!hidingSubRow)
+            if (hidingSubRow) setTimeout(() => setSubRowActive(false), 1000)
+            else setSubRowActive(true)
         }
         //Удаление на десктопе
         const deleteClick = () => {
@@ -108,7 +105,7 @@ const Row: FC<RowProps> =
                         {!isSubCells
                             ? <span onClick={deleteClick} className="action delete">x</span>
                             : <span onClick={hidingSub}
-                                    className={`action toggle ${hidingSubRow ? 'close' : 'open'}`}>↓</span>}
+                                    className={`action  ${hidingSubRow ? 'close' : 'open'} ${!count && 'toggle'}`}>↓</span>}
                     </div>
 
                     {!isSubCells &&
@@ -118,7 +115,7 @@ const Row: FC<RowProps> =
                         </div>
                     }
                 </div>
-                {isSubCells && subCells.map(subCell =>
+                {isSubCells && subCells && subCells.map(subCell =>
                     <SubRow key={subCell}
                             hiding={hidingSubRow}
                             show={subRowActive}
