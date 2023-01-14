@@ -1,6 +1,7 @@
 import {FC, useEffect, useState} from 'react';
 import Row from "./Row/Row";
 import {useMainContext} from "../../context";
+import {typesOfCells} from "../../data";
 
 const TableBody: FC = () => {
     const {cells, setCells, total, setTotal, maxCount, modeCells} = useMainContext()
@@ -13,18 +14,15 @@ const TableBody: FC = () => {
     }
     useEffect(() => {
         setTotal(0)
-        if (modeCells === 'Cells blood') {
-            setCells(['Monocyte', 'Lymphocyte', 'Eosinophil', 'Basophil'])
-        } else if (modeCells === 'Cells dogs') {
-            setCells(['CellDogs1', 'CellDogs2', 'CellDogs3', 'CellDogs4', 'CellDogs5'])
-        }
+        //@ts-ignore
+        setCells(typesOfCells[modeCells])
     }, [modeCells])
     return (
         <div className={'body'}>
-            {modeCells === 'Cells blood' && <Row cell={'Neutrophil'}
-                                                 subCells={subCells}
-                                                 isSubCells={true}
-                                                 deleteRow={deleteRow}/>}
+            {modeCells === 'cellsBlood' && <Row cell={'Neutrophil'}
+                                                subCells={subCells}
+                                                isSubCells={true}
+                                                deleteRow={deleteRow}/>}
 
             {cells.map(el => <Row key={el}
                                   isSubCells={false}

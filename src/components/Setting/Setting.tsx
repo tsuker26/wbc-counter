@@ -1,34 +1,29 @@
-import  {ChangeEvent, FC, useState} from 'react';
+import {ChangeEvent, FC, useState} from 'react';
 import {useMainContext} from "../../context";
 import Selector from "../UI/Selector/Selector";
 import Button from "../UI/Button/Button";
+import {typesOfCells} from "../../data";
 
 type SettingProps = {
     clear: () => void,
 }
 
 const Setting: FC<SettingProps> = ({clear}) => {
-
-    const {mode, setMode, cells, setCells, setWbc, maxCount, setMaxCount,modeCells,setModeCells} = useMainContext()
-
+    const {mode, setMode, cells, setCells,wbc, setWbc, maxCount, setMaxCount, modeCells, setModeCells} = useMainContext()
     const [add, setAdd] = useState<string>('')
-    const [inputWbc, setInputWbc] = useState<string>('')
     const addCell = () => {
         if (add) {
             setCells([...cells, add])
             setAdd('')
         }
     }
-    const changeWbc = (num: string) => {
-        setInputWbc(num)
-        setWbc(+inputWbc)
-    }
+
     return (
         <div className={'setting'}>
             <div className={'input input_wbc'}>
                 <input type="text"
-                       value={inputWbc}
-                       onChange={((e: ChangeEvent<HTMLInputElement>) => changeWbc(e.target.value))}/>
+                       value={wbc}
+                       onChange={((e: ChangeEvent<HTMLInputElement>) => setWbc(e.target.value))}/>
                 <span>10⁹/L</span>
             </div>
             <div className={'input max_count'}>
@@ -47,8 +42,12 @@ const Setting: FC<SettingProps> = ({clear}) => {
             <div className={'btn'}>
                 <Button fn={window.print}>Print</Button>
                 <Button fn={clear}>Default</Button>
-                <Selector fn={setMode} selectActive={mode} selectors={['-','+']} />
-                <Selector fn={setModeCells} selectActive={modeCells} selectors={['Cells blood','Cells dogs']}/>
+                <Selector fn={setMode} selectActive={mode} selectors={[{id: '1', name: '-'}, {id: '2', name: '+'}]}/>
+                <Selector fn={setModeCells} selectActive={modeCells}
+                          selectors={Object.keys(typesOfCells).map(el => ({
+                              id: el,
+                              name: `${el[0].toUpperCase()}${el.slice(1, 5)}  ${el.slice(5).toLowerCase()}`
+                          }))}/>
             </div>
         </div>
     );
