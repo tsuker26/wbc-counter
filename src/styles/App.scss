@@ -41,13 +41,10 @@ body {
     background-color:$additional-colors;
     border-radius: 50%;
   }
-  .header_name {
+  .name_logo{
+    height: 30px;
     align-self: center;
     margin-left: 7px;
-    font-family:cursive;
-    font-weight: bold;
-    font-size: 24px;
-    font-style: oblique;
   }
 }
 
