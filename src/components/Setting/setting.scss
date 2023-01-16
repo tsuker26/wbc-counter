@@ -6,15 +6,6 @@
   align-items: center;
   margin-top: 25px;
 
-
-  input {
-    background-color: transparent;
-    padding: 10px;
-    border: 1px solid $additional-colors;
-    outline: none;
-    border-radius: 25px;
-  }
-
   span {
     margin-left: 5px;
   }
@@ -30,7 +21,7 @@
   .setting {
     flex-direction: column;
 
-    .input {
+    .input_block {
       display: flex;
       align-items: center;
       justify-content: center;
@@ -41,9 +32,6 @@
         margin-top: 5px;
       }
 
-      input {
-        width: 100%;
-      }
     }
 
 

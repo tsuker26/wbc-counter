@@ -3,6 +3,7 @@ import { useMainContext } from '../../context'
 import Selector from '../UI/Selector/Selector'
 import Button from '../UI/Button/Button'
 import { typesOfCells } from '../../data'
+import Input from '../UI/Input/Input'
 
 type SettingProps = {
 	clear: () => void
@@ -31,8 +32,8 @@ const Setting: FC<SettingProps> = ({ clear }) => {
 
 	return (
 		<div className={'setting'}>
-			<div className={'input input_wbc'}>
-				<input
+			<div className={'input_block input_wbc'}>
+				<Input
 					type='text'
 					value={wbc}
 					onChange={(e: ChangeEvent<HTMLInputElement>) =>
@@ -41,8 +42,8 @@ const Setting: FC<SettingProps> = ({ clear }) => {
 				/>
 				<span>10⁹/L</span>
 			</div>
-			<div className={'input max_count'}>
-				<input
+			<div className={'input_block max_count'}>
+				<Input
 					type='tel'
 					value={maxCount}
 					onChange={(e: ChangeEvent<HTMLInputElement>) =>
@@ -51,8 +52,8 @@ const Setting: FC<SettingProps> = ({ clear }) => {
 				/>
 				<span>Max</span>
 			</div>
-			<div className={'input add'}>
-				<input
+			<div className={'input_block add'}>
+				<Input
 					type='text'
 					value={add}
 					onChange={(e: ChangeEvent<HTMLInputElement>) =>
