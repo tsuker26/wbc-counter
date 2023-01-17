@@ -6,7 +6,7 @@ import {
 	useMemo,
 	useState,
 } from 'react'
-import { ITypesOfCells, typesOfCells } from '../data'
+import { ISubCellsTypes, ITypesOfCells, typesOfCells } from '../data'
 
 export interface IContext {
 	mode: string
@@ -19,8 +19,8 @@ export interface IContext {
 	setMaxCount: (maxCount: number) => void
 	total: number
 	setTotal: (total: number) => void
-	modeCells: keyof ITypesOfCells
-	setModeCells: (mode: keyof ITypesOfCells) => void
+	modeCells: keyof ITypesOfCells | keyof ISubCellsTypes
+	setModeCells: (mode: keyof ITypesOfCells | keyof ISubCellsTypes) => void
 }
 
 const MainContext = createContext<IContext>({} as IContext)
@@ -29,7 +29,9 @@ export const useMainContext = () => useContext(MainContext)
 
 const ContextProvider: FC<PropsWithChildren> = ({ children }) => {
 	const [mode, setMode] = useState<string>('2')
-	const [modeCells, setModeCells] = useState<keyof ITypesOfCells>('cellsBlood')
+	const [modeCells, setModeCells] = useState<
+		keyof ITypesOfCells | keyof ISubCellsTypes
+	>('cellsBlood')
 	const [cells, setCells] = useState<string[]>(typesOfCells.cellsBlood)
 	const [wbc, setWbc] = useState<string>('0')
 	const [maxCount, setMaxCount] = useState<number>(100)
