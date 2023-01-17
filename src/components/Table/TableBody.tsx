@@ -20,7 +20,6 @@ const TableBody: FC = () => {
 	}
 	useEffect(() => {
 		setTotal(0)
-		//@ts-ignore
 		setCells(typesOfCells[modeCells])
 	}, [modeCells])
 	return (
@@ -48,4 +47,4 @@ const TableBody: FC = () => {
 	)
 }
 
-export default TableBody;
+export default TableBody
