@@ -1,0 +1,16 @@
+@import "src/styles/variables";
+
+input {
+  background-color: transparent;
+  padding: 10px;
+  border: 1px solid $additional-colors;
+  outline: none;
+  border-radius: 25px;
+
+}
+@media (max-width: 1149px) {
+  input {
+    width: 100%;
+    font-size: 16px;
+  }
+}
