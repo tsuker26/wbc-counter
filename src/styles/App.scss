@@ -73,5 +73,12 @@ body {
 }
 
 
-
+@media print {
+  .header {
+    display: none;
+  }
+  .footer {
+    display: none;
+  }
+}
 
