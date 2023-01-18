@@ -1,4 +1,5 @@
 import { FC } from 'react'
+import { ITypesOfCells } from '../../../data'
 
 export type selector = {
 	id: string
@@ -6,8 +7,8 @@ export type selector = {
 }
 
 interface selectorProps {
-	fn: (select: string) => void
-	selectActive: string
+	fn: (select: any) => void
+	selectActive: string | keyof ITypesOfCells
 	selectors: selector[]
 }
 

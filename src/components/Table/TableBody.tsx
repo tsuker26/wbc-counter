@@ -1,17 +1,11 @@
-import { FC, useEffect, useState } from 'react'
+import { FC, useEffect } from 'react'
 import Row from './Row/Row'
 import { useMainContext } from '../../context'
-import { typesOfCells } from '../../data'
+import { subCellsTypes, typesOfCells } from '../../data'
 
 const TableBody: FC = () => {
 	const { cells, setCells, total, setTotal, maxCount, modeCells } =
 		useMainContext()
-	const [subCells] = useState([
-		'Myelocytes',
-		'Metamyelocytes',
-		'Bandnuclear',
-		'Segmentednuclear',
-	])
 
 	//Удаленин строки
 	const deleteRow = (cell: string, count: number) => {
@@ -20,16 +14,15 @@ const TableBody: FC = () => {
 	}
 	useEffect(() => {
 		setTotal(0)
-		//@ts-ignore
 		setCells(typesOfCells[modeCells])
 	}, [modeCells])
 	return (
 		<div className={'body'}>
-			{modeCells === 'cellsBlood' && (
+			{subCellsTypes[modeCells].subCells.length > 0 && (
 				<Row
-					cell={'Neutrophil'}
-					subCells={subCells}
+					cell={subCellsTypes[modeCells].name}
 					isSubCells={true}
+					subCells={subCellsTypes[modeCells].subCells}
 					deleteRow={deleteRow}
 				/>
 			)}
@@ -48,4 +41,4 @@ const TableBody: FC = () => {
 	)
 }
 
-export default TableBody;
+export default TableBody

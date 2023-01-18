@@ -16,7 +16,6 @@ const Main: FC = () => {
 			setMode('2')
 			setWbc('0')
 			setMaxCount(100)
-			//@ts-ignore
 			setCells(typesOfCells[modeCells])
 		}
 	}
@@ -34,4 +33,4 @@ const Main: FC = () => {
 	)
 }
 
-export default Main;
+export default Main
